@@ -34,8 +34,7 @@ install_ubuntu() {
 EOL
 
     # Start the CloudWatch Agent
-    sudo systemctl enable amazon-cloudwatch-agent
-    sudo systemctl start amazon-cloudwatch-agent
+    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a start
 }
 
 # Function to install and configure CloudWatch Agent for Amazon Linux
@@ -66,8 +65,7 @@ install_amazon_linux() {
 EOL
 
     # Start the CloudWatch Agent
-    sudo systemctl enable amazon-cloudwatch-agent
-    sudo systemctl start amazon-cloudwatch-agent
+    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a start
 }
 
 # Function to install and configure CloudWatch Agent for RHEL
@@ -98,8 +96,7 @@ install_rhel() {
 EOL
 
     # Start the CloudWatch Agent
-    sudo systemctl enable amazon-cloudwatch-agent
-    sudo systemctl start amazon-cloudwatch-agent
+    sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a start
 }
 
 # Determine OS and call the appropriate function
@@ -119,3 +116,6 @@ else
 fi
 
 echo "CloudWatch Agent installation and configuration complete."
+
+# Check the status of the CloudWatch Agent
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
